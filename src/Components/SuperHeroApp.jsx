@@ -1,12 +1,9 @@
 //a wrapper class that will be responsible for the interaction between all the components
-
 import React from "react";
 
 //custom components import
 import TopBar from "./TopBar/TopBar";
-//import APICaller from "../HelperFiles/APICaller";
 import Team from "./Team/Team";
-//import Superhero from "../HelperFiles/Superhero";
 import Result from "./Result/Result";
 import "./SuperHeroApp.css";
 
@@ -20,6 +17,7 @@ export default class SuperHeroApp extends React.Component {
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
   }
 
+  //check if the query has changed, and if so rerender this component and children
   componentDidUpdate(prevProps) {
     if (this.props.currentQuery !== prevProps.currentQuery) {
       this.setState({ currentQuery: this.props.currentQuery });
@@ -33,6 +31,8 @@ export default class SuperHeroApp extends React.Component {
     }
   };
 
+  onAddToTeamHandler = () => {};
+
   render() {
     return (
       <>
@@ -45,7 +45,7 @@ export default class SuperHeroApp extends React.Component {
             <Result query={this.state.currentQuery}></Result>
           </div>
           <div className="teamContainer">
-            <Team hero={this.state.hero}></Team>
+            <Team></Team>
           </div>
         </div>
       </>

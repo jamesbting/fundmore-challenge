@@ -34,7 +34,7 @@ export default class ResultItem extends React.Component {
   render() {
     const results = this.props.results;
     let expanded = this.state.expanded;
-    // the list or results, where each result is a card
+    // the list or results, where each result is
     return (
       <div>
         <h1>Results:</h1>

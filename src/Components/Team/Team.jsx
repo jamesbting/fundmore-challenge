@@ -6,7 +6,6 @@ export default class Team extends React.Component {
     this.state = {
       teamMembers: [],
       averageStats: [0, 0, 0, 0, 0, 0, 0], // current average stats are in the following order: Intelligence, Strength, Speed, Durability, Power, Combat
-      apiKey: props.apiKey,
     };
     this.stats = [
       "Intelligence",
@@ -20,15 +19,25 @@ export default class Team extends React.Component {
 
   render() {
     const stats = this.renderStats();
-    const apiKey = this.state.apiKey;
+    if (this.state.teamMembers.length === 0) {
+      return (
+        <div>
+          <h1>Team:</h1>
+          {stats}
+          <p>
+            You haven't added anyone to your team yet. Search for a superhero to
+            add them to your team.
+          </p>
+        </div>
+      );
+    }
     return (
       <div>
         <h1>Team:</h1>
-        <TeamMember apiKey={apiKey} hero={this.state.hero}></TeamMember>
         {stats}
+        <TeamMember></TeamMember>
       </div>
     );
-    //}
   }
 
   //converts the average stats to a string with the name of each stat
