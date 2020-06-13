@@ -10,43 +10,43 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 import "./TeamMember.css";
 export default class TeamMember extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { member: null };
-  }
-
+  //check for new props, and update accordingly
   componentWillReceiveProps(nextProps) {
-    if (nextProps.hero !== this.state.hero) {
-      this.setState({ hero: nextProps.hero });
+    console.log(nextProps);
+    if (nextProps.member !== this.props.member) {
+      this.setState({
+        member: nextProps.member,
+      });
     }
   }
 
   render() {
+    const member = this.props.member;
     return (
-      <Card className={"searchResultCardRoot"} key={this.state.member.id}>
+      <Card className={"searchResultCardRoot"} key={member.id}>
         <CardMedia
           className={"media"}
-          image={`${this.state.member.image.url}`}
-          title={`Image of ${this.state.member.name}`}
+          image={`${member.image.url}`}
+          title={`Image of ${member.name}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {this.state.member.name}
+            {member.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Stats:
             <br></br>
-            Intelligence: {this.state.member.powerstats.intelligence}
+            Intelligence: {member.powerstats.intelligence}
             <br></br>
-            Strength: {this.state.member.powerstats.strength}
+            Strength: {member.powerstats.strength}
             <br></br>
-            Speed: {this.state.member.powerstats.speed}
+            Speed: {member.powerstats.speed}
             <br></br>
-            Durability: {this.state.member.powerstats.durability}
+            Durability: {member.powerstats.durability}
             <br></br>
-            Power: {this.state.member.powerstats.power}
+            Power: {member.powerstats.power}
             <br></br>
-            Combat: {this.state.member.powerstats.combat}
+            Combat: {member.powerstats.combat}
           </Typography>
         </CardContent>
         <CardActions></CardActions>

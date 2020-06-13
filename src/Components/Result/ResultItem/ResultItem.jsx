@@ -16,7 +16,11 @@ import "./ResultItem.css";
 export default class ResultItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hero: this.props.hero, expanded: false };
+    this.state = {
+      hero: this.props.hero,
+      expanded: false,
+      handler: props.handler,
+    };
   }
 
   //new search
@@ -31,12 +35,19 @@ export default class ResultItem extends React.Component {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  //handler for adding to team
+  handleAddToTeam = () => {
+    const handler = this.state.handler;
+    const hero = this.state.hero;
+    handler(hero);
+  };
+
   render() {
     const hero = this.props.hero;
     let expanded = this.state.expanded;
     //result card for a hero
     return (
-      <Card className={"searchResultCardRoot"} key={hero.id}>
+      <Card className={"searchResultCardRoot"} key={`${hero.name}-${hero.id}`}>
         <CardMedia
           className={"media"}
           image={`${hero.image.url}`}
@@ -86,7 +97,9 @@ export default class ResultItem extends React.Component {
           </IconButton>
           {/* Button to handle adding to a team */}
 
-          <Button size="small">Add to Team</Button>
+          <Button size="small" onClick={this.handleAddToTeam}>
+            Add to Team
+          </Button>
         </CardActions>
       </Card>
     );

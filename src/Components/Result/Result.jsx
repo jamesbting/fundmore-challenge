@@ -3,10 +3,9 @@ import React from "react";
 
 import ResultItem from "./ResultItem/ResultItem";
 
-const API_KEY = 3001192003309876; // my api key - replace it with your own API Key
+const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key
 
 export default class Result extends React.Component {
-  //this constructor accepts 2 values as input
   //baseURL: the base url to call the api with (API key should be included here)
   //proxyURL: the proxy url to call forward the request to in order to eliminate CORS errors
   //both should be passed from the SuperHeroAppComponent
@@ -17,6 +16,7 @@ export default class Result extends React.Component {
       proxyURL: "https://cors-anywhere.herokuapp.com/",
       query: props.query,
       results: [],
+      addToTeamHandler: props.addToTeamHandler,
     };
   }
 
@@ -55,11 +55,12 @@ export default class Result extends React.Component {
   //show the reuslts by passing each result as a prop to ResultItem
   render() {
     const results = this.state.results;
+    const handler = this.state.addToTeamHandler;
     return (
       <div>
         <h1>Results:</h1>
         {results.map((result) => (
-          <ResultItem hero={result}></ResultItem>
+          <ResultItem hero={result} handler={handler}></ResultItem>
         ))}
       </div>
     );

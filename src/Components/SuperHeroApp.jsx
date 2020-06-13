@@ -15,12 +15,15 @@ export default class SuperHeroApp extends React.Component {
       currentQuery: "batman", //default to batman on start because i dont know how to deal with an empty query, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
     };
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
+    this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
   }
 
-  //check if the query has changed, and if so rerender this component and children
+  //check if the props has changed, and if so rerender this component and children
   componentDidUpdate(prevProps) {
     if (this.props.currentQuery !== prevProps.currentQuery) {
       this.setState({ currentQuery: this.props.currentQuery });
+    } else if (this.props.team !== prevProps.team) {
+      this.setState({ team: this.props.team });
     }
   }
 
@@ -31,9 +34,17 @@ export default class SuperHeroApp extends React.Component {
     }
   };
 
-  onAddToTeamHandler = () => {};
+  //pass this team handler to the results
+  onAddToTeamHandler = (hero) => {
+    console.log("pushing");
+    const newTeam = this.state.team;
+    newTeam.push(hero);
+    this.setState({ team: newTeam });
+    console.log(this.state.team);
+  };
 
   render() {
+    const team = this.state.team;
     return (
       <>
         {/* Make the top bar element */}
@@ -42,10 +53,13 @@ export default class SuperHeroApp extends React.Component {
         <div className="rowContainer">
           {" "}
           <div className="resultsContainer">
-            <Result query={this.state.currentQuery}></Result>
+            <Result
+              query={this.state.currentQuery}
+              addToTeamHandler={this.onAddToTeamHandler}
+            ></Result>
           </div>
           <div className="teamContainer">
-            <Team></Team>
+            <Team teamMembers={team}></Team>
           </div>
         </div>
       </>

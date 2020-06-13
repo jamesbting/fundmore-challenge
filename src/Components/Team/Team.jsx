@@ -4,7 +4,7 @@ export default class Team extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      teamMembers: [],
+      teamMembers: props.teamMembers,
       averageStats: [0, 0, 0, 0, 0, 0, 0], // current average stats are in the following order: Intelligence, Strength, Speed, Durability, Power, Combat
     };
     this.stats = [
@@ -15,6 +15,14 @@ export default class Team extends React.Component {
       "Power",
       "Combat",
     ];
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      this.state.teamMembers.toString() !== nextProps.teamMembers.toString()
+    ) {
+      this.setState({ teamMembers: nextProps.teamMembers });
+    }
   }
 
   render() {
@@ -31,11 +39,14 @@ export default class Team extends React.Component {
         </div>
       );
     }
+    const teamMembers = this.state.teamMembers;
     return (
       <div>
         <h1>Team:</h1>
         {stats}
-        <TeamMember></TeamMember>
+        {teamMembers.map((member) => (
+          <TeamMember member={member}></TeamMember>
+        ))}
       </div>
     );
   }
