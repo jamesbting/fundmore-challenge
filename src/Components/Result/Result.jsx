@@ -52,9 +52,16 @@ export default class Result extends React.Component {
       .catch(console.log);
   }
 
-  //show the results by passing the results as a prop to ResultItem
+  //show the reuslts by passing each result as a prop to ResultItem
   render() {
     const results = this.state.results;
-    return <ResultItem results={results}></ResultItem>;
+    return (
+      <div>
+        <h1>Results:</h1>
+        {results.map((result) => (
+          <ResultItem hero={result}></ResultItem>
+        ))}
+      </div>
+    );
   }
 }
