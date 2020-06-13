@@ -1,13 +1,12 @@
 //a wrapper class that will be responsible for the interaction between all the components
 
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //custom components import
 import TopBar from "./TopBar/TopBar";
-import APICaller from "../HelperFiles/APICaller";
+//import APICaller from "../HelperFiles/APICaller";
 import Team from "./Team/Team";
-import Superhero from "../HelperFiles/Superhero";
+//import Superhero from "../HelperFiles/Superhero";
 import Result from "./Result/Result";
 import "./SuperHeroApp.css";
 
@@ -41,7 +40,7 @@ export default class SuperHeroApp extends React.Component {
   render() {
     return (
       <>
-        s{/* Make the top bar element */}
+        {/* Make the top bar element */}
         <TopBar handler={this.onChangeQueryHandler}></TopBar>
         {/* return the super hero details page */}
         <div className="rowContainer">

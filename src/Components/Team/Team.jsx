@@ -23,6 +23,7 @@ export default class Team extends React.Component {
     const apiKey = this.state.apiKey;
     return (
       <div>
+        <h1>Team:</h1>
         <TeamMember apiKey={apiKey} hero={this.state.hero}></TeamMember>
         {stats}
       </div>
