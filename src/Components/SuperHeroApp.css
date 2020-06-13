@@ -1,0 +1,11 @@
+.rowContainer {
+  display: inline-flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.teamContainer {
+  width: 50;
+}
