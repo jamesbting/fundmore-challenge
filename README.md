@@ -28,14 +28,13 @@ $ npm start
 
 ## Dependencies
 
-Dependencies: material-ui/core, material-ui/icons, react-router
+Dependencies: material-ui/core, material-ui/icons
 
 To install material-ui, type the following into the command line:
 `npm install @material-ui/core`
 `npm install @material-ui/icons`
-`npm install --save react-router-dom`
 
-In the SuperHeroApp.jxs file, (src\HelperFiles\Superhero.js) ensure that the value in API_KEY is your API key
+In the Result.jsx file, (src\Components\Result\Result.jsx) ensure that the value in API_KEY is your API key
 
 ## Notes about the design
 
