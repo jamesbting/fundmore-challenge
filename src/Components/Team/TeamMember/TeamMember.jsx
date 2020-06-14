@@ -12,6 +12,7 @@ export default class TeamMember extends React.Component {
     super();
     this.state = { member: null };
   }
+
   //check for new props, and update accordingly
   static getDerivedStateFromProps(props, state) {
     if (props.member !== state.member) {
@@ -19,36 +20,46 @@ export default class TeamMember extends React.Component {
     }
     return null;
   }
+  //handle when the user clicks the "Remove from team button"
   handleRemoveFromTeam = () => {
     this.props.removeFromTeamHandler(this.state.member);
   };
+
   render() {
-    const member = this.props.member;
+    const { id, name, image, powerstats } = this.props.member; //destructure to reduce the code base
+    //for building the list
+    const stats = [
+      powerstats.intelligence,
+      powerstats.strength,
+      powerstats.speed,
+      powerstats.durability,
+      powerstats.power,
+      powerstats.combat,
+    ];
+    const statNames = [
+      "Intelligence",
+      "Strength",
+      "Speed",
+      "Durability",
+      "Power",
+      "Combat",
+    ];
     return (
-      <Card className={"searchResultCardRoot"} key={member.id}>
+      <Card className={"searchResultCardRoot"} key={id}>
         <CardMedia
           className={"media"}
-          image={`${member.image.url}`}
-          title={`Image of ${member.name}`}
+          image={`${image.url}`}
+          title={`Image of ${name}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {member.name}
+            {name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Stats:
-            <br></br>
-            Intelligence: {member.powerstats.intelligence}
-            <br></br>
-            Strength: {member.powerstats.strength}
-            <br></br>
-            Speed: {member.powerstats.speed}
-            <br></br>
-            Durability: {member.powerstats.durability}
-            <br></br>
-            Power: {member.powerstats.power}
-            <br></br>
-            Combat: {member.powerstats.combat}
+            {/* build a list of the stats for this team member */}
+            {statNames.map((statName) => (
+              <p>{`${statName}: ${stats[statNames.indexOf(statName)]}`}</p>
+            ))}
           </Typography>
         </CardContent>
         <CardActions>

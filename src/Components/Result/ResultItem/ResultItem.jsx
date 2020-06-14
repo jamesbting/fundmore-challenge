@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
 
@@ -54,6 +55,15 @@ export default class ResultItem extends React.Component {
     this.props.removeHandler(hero);
   };
 
+  //function that determines which icon to use depending on if the card is expanded or collapsed
+  getExpandIcon() {
+    if (this.state.expanded) {
+      return <ExpandLessIcon />;
+    } else {
+      return <ExpandMoreIcon />;
+    }
+  }
+
   render() {
     const {
       name,
@@ -63,6 +73,24 @@ export default class ResultItem extends React.Component {
       appearance,
       work,
     } = this.props.hero; //use destructuring to make the code more readable and reduce the code base
+
+    const stats = [
+      powerstats.intelligence,
+      powerstats.strength,
+      powerstats.speed,
+      powerstats.durability,
+      powerstats.power,
+      powerstats.combat,
+    ];
+    const statNames = [
+      "Intelligence",
+      "Strength",
+      "Speed",
+      "Durability",
+      "Power",
+      "Combat",
+    ];
+
     let expanded = this.state.expanded;
     return (
       <Card className={"searchResultCardRoot"}>
@@ -133,20 +161,9 @@ export default class ResultItem extends React.Component {
             {/* Box for the states for this hero */}
             <div className="resultItemStatsBox">
               <Typography>
-                {" "}
-                <u>Stats:</u>
-                <br></br>
-                Intelligence: {powerstats.intelligence}
-                <br></br>
-                Strength: {powerstats.strength}
-                <br></br>
-                Speed: {powerstats.speed}
-                <br></br>
-                Durability: {powerstats.durability}
-                <br></br>
-                Power: {powerstats.power}
-                <br></br>
-                Combat: {powerstats.combat}
+                {statNames.map((statName) => (
+                  <p>{`${statName}: ${stats[statNames.indexOf(statName)]}`}</p>
+                ))}
               </Typography>
             </div>
           </CardContent>
@@ -158,7 +175,8 @@ export default class ResultItem extends React.Component {
             aria-expanded={expanded}
             aria-label="Ver mais"
           >
-            <ExpandMoreIcon />
+            {/* get the expand/collapse icon */}
+            {this.getExpandIcon()}
           </IconButton>
           {/* Button to handle adding to a team */}
           <Button size="small" onClick={this.handleAddToTeam}>
