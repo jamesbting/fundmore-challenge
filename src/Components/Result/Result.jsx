@@ -2,6 +2,7 @@
 import React from "react";
 
 import ResultItem from "./ResultItem/ResultItem";
+import "./Result.css";
 
 const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key
 

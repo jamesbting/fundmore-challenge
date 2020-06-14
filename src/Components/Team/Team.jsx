@@ -1,5 +1,7 @@
 import React from "react";
 import TeamMember from "./TeamMember/TeamMember";
+
+import "./Team.css";
 export default class Team extends React.Component {
   constructor() {
     super();
@@ -26,7 +28,6 @@ export default class Team extends React.Component {
   }
 
   render() {
-    const stats = this.renderStats();
     // if  there are no members in the team, then do nothing
     if (this.props.teamMembers.length === 0) {
       return (
@@ -40,38 +41,44 @@ export default class Team extends React.Component {
       );
     }
     const teamMembers = this.props.teamMembers;
+    const stats = this.renderStats();
+
     return (
       <div>
         <h1>Your Team:</h1>
-        {stats}
-        {teamMembers.map((member) => (
-          <TeamMember member={member}></TeamMember>
+        <div className="teamBox">
+          <div className="teamMembers">
+            <p>Your current team is:</p>
+            {teamMembers.map((member) => (
+              <TeamMember member={member}></TeamMember>
+            ))}
+          </div>
+          <div className="teamStats">{stats}</div>
+        </div>
+      </div>
+    );
+  }
+
+  //function that returns a div that contains the average stats of the current team
+  renderStats() {
+    return (
+      <div className="averageStatContainer">
+        <h2>Average Stats:</h2>
+        <p>This shows the average stats amongst all the team members.</p>
+        {this.stats.map((stat) => (
+          <div
+            className="averageStat"
+            id={`${stat}`}
+          >{`${stat}: ${this.state.averageStats[
+            this.stats.indexOf(stat)
+          ].toFixed(1)}`}</div>
         ))}
       </div>
     );
   }
 
-  //converts the average stats to a string with the name of each stat
-  //might be useful to do memoization
-  averageStatsToString() {
-    let string = "";
-    for (let i = 0; i < this.stats.length; i++) {
-      string += `${this.stats[i]}: ${this.state.averageStats[i].toFixed(1)} `; //1 decimal point
-    }
-    return string;
-  }
-
-  renderStats() {
-    return (
-      <div className="averageStatContainer">
-        {" "}
-        Average Stats: {`${this.averageStatsToString()}`}
-      </div>
-    );
-  }
-
   //function to calculate the averages
-  //called by component will recieve props in order to achieve separation of concerns
+  //called by component will receive props in order to achieve separation of concerns
   static calculateNewAverages(teamMembers) {
     const n = teamMembers.length;
     const newAverages = [0, 0, 0, 0, 0, 0, 0];

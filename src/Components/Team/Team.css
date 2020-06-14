@@ -1,0 +1,13 @@
+.teamBox {
+  display: inline-flex;
+  flex-direction: row;
+  width: 100%;
+}
+.teamMembers {
+  margin-right: 5%;
+  width: 50%;
+}
+.teamStats {
+  margin-left: 5%;
+  width: 40%;
+}
