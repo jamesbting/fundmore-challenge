@@ -6,7 +6,6 @@ export default class Team extends React.Component {
   constructor() {
     super();
     this.state = {
-      //teamMembers: props.teamMembers,
       averageStats: [0, 0, 0, 0, 0, 0, 0], // current average stats are in the following order: Intelligence, Strength, Speed, Durability, Power, Combat
     };
     this.stats = [

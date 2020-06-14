@@ -14,6 +14,7 @@ export default class SuperHeroApp extends React.Component {
   constructor() {
     super();
     this.state = {
+      currIDs: new Set(),
       team: [],
       currentQuery: "", //default to empty string on start
     };
@@ -43,12 +44,21 @@ export default class SuperHeroApp extends React.Component {
   };
 
   //pass this team handler to the results
-  //this function pushes the new member to the current team array, and then updates the state
+  //this function pushes the new member to the current team array if the current team member's id is not in the set (since IDs are unique)
+  //and then updates the state
   //once the state has been updated, the component should re-render
   onAddToTeamHandler = (hero) => {
     const newTeam = this.state.team;
-    newTeam.push(hero);
-    this.setState({ team: newTeam });
+    const IDSet = this.state.currIDs;
+    if (IDSet.has(hero.id)) {
+      alert(
+        `Looks like ${hero.name} is already in the team! Try adding another superhero`
+      );
+    } else {
+      newTeam.push(hero);
+      IDSet.add(hero.id);
+      this.setState({ team: newTeam, currIDs: IDSet });
+    }
   };
 
   render() {

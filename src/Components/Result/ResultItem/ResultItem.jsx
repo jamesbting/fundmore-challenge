@@ -119,7 +119,7 @@ export default class ResultItem extends React.Component {
                 <br></br>
                 Eye color: {appearance["eye-color"]}
                 <br></br>
-                First Appearance: {appearance["hair-color"]}
+                Hair color: {appearance["hair-color"]}
               </Typography>
             </div>
             <br></br>
