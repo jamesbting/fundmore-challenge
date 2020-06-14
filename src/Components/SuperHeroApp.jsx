@@ -6,6 +6,7 @@ import React from "react";
 import TopBar from "./TopBar/TopBar";
 import Team from "./Team/Team";
 import Result from "./Result/Result";
+import CreditBox from "./CreditBox/CreditBox";
 import "./SuperHeroApp.css";
 
 export default class SuperHeroApp extends React.Component {
@@ -13,7 +14,7 @@ export default class SuperHeroApp extends React.Component {
     super();
     this.state = {
       team: [],
-      currentQuery: "batman", //default to batman on start because i dont know how to deal with an empty query on initial load, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
+      currentQuery: "", //default to batman on start because i dont know how to deal with an empty query on initial load, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
     };
 
     //bind the this key word to this instance of the SuperHero so that when it is called outside of the function
@@ -22,7 +23,8 @@ export default class SuperHeroApp extends React.Component {
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
   }
 
-  //check if the props has changed, and if so rerender this component and children
+  //check if the props has changed (the current query and/or the team), and if so
+  //set the state appropriately and then re-render this component and children
   componentDidUpdate(prevProps) {
     if (this.props.currentQuery !== prevProps.currentQuery) {
       this.setState({ currentQuery: this.props.currentQuery });
@@ -55,8 +57,7 @@ export default class SuperHeroApp extends React.Component {
         {/* Make the top bar element */}
         <TopBar handler={this.onChangeQueryHandler}></TopBar>
         {/* return the super hero details page */}
-        <div className="rowContainer">
-          {" "}
+        <div className="appContainer">
           <div className="resultsContainer">
             <Result
               query={this.state.currentQuery}
@@ -66,6 +67,10 @@ export default class SuperHeroApp extends React.Component {
           <div className="teamContainer">
             <Team teamMembers={team}></Team>
           </div>
+          {/* Credit box */}
+        </div>
+        <div className="bottomContainer">
+          <CreditBox></CreditBox>
         </div>
       </>
     );

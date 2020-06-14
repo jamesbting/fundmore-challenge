@@ -14,24 +14,19 @@ export default class Result extends React.Component {
     this.state = {
       baseURL: `https://superheroapi.com/api/${API_KEY}`,
       proxyURL: "https://cors-anywhere.herokuapp.com/",
-      query: props.query,
       results: [],
     };
   }
 
+  //check if the query has changed - if so call the api, and then re render this component after setting the state
   componentDidUpdate(nextProps) {
-    if (nextProps.query !== this.state.query) {
-      this.callAPI(nextProps.query);
-      this.setState({ query: nextProps.query });
+    if (nextProps.query !== this.props.query) {
+      this.callAPI(this.props.query);
+      //this.setState({ query: nextProps.query });
     }
   }
 
-  //pull from the api
-  componentDidMount() {
-    const query = this.state.query;
-    this.callAPI(query);
-  }
-
+  //function that takes as input a string that represents a query
   callAPI(query) {
     this.setState({ results: [] }); //empty the previous results
     const cleanedQuery = query.replace(" ", "%20"); //clean the query to remove spaces and encode them properly as URLs

@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 export default function TopBar(props) {
   const onChangeQueryHandler = (event) => {
     const changeQuery = props.handler;

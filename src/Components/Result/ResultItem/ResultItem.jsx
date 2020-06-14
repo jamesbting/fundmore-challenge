@@ -21,10 +21,10 @@ export default class ResultItem extends React.Component {
     };
   }
 
-  //new search
+  //new search query has been give from this component's parent props - set the state and re-render
   static getDerivedStateFromProps(props, state) {
     if (props.hero.toString() !== state.hero.toString()) {
-      return { her: props.hero };
+      return { hero: props.hero };
     }
     return null;
   }
@@ -67,7 +67,7 @@ export default class ResultItem extends React.Component {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             <Typography paragraph>
-              {/* My gut tells me thee is a better wat to do this, but I can't think of it
+              {/* My gut tells me there is a better wat to do this, but I can't think of it
                     TODO: think of a better way that is more extensible */}
               Stats:
               <br></br>
