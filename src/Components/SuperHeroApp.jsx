@@ -14,7 +14,7 @@ export default class SuperHeroApp extends React.Component {
     super();
     this.state = {
       team: [],
-      currentQuery: "", //default to batman on start because i dont know how to deal with an empty query on initial load, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
+      currentQuery: "", //default to empty string on start
     };
 
     //bind the this key word to this instance of the SuperHero so that when it is called outside of the function

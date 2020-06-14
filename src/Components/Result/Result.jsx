@@ -18,11 +18,10 @@ export default class Result extends React.Component {
     };
   }
 
-  //check if the query has changed - if so call the api, and then re render this component after setting the state
+  //check if the query has changed - if so call the api, and then re render this component with the new results
   componentDidUpdate(nextProps) {
     if (nextProps.query !== this.props.query) {
       this.callAPI(this.props.query);
-      //this.setState({ query: nextProps.query });
     }
   }
 
@@ -54,7 +53,11 @@ export default class Result extends React.Component {
       <div>
         <h1>Search Results:</h1>
         {results.map((result) => (
-          <ResultItem hero={result} handler={handler}></ResultItem>
+          <ResultItem
+            hero={result}
+            handler={handler}
+            key={result.id}
+          ></ResultItem>
         ))}
       </div>
     );

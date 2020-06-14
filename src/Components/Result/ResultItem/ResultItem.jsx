@@ -29,7 +29,7 @@ export default class ResultItem extends React.Component {
     return null;
   }
 
-  //handle when expanded
+  //handle when expanded/collapsed button is clicked
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
   };
@@ -42,47 +42,100 @@ export default class ResultItem extends React.Component {
   };
 
   render() {
-    const hero = this.props.hero;
+    const {
+      name,
+      image,
+      biography,
+      powerstats,
+      appearance,
+      work,
+    } = this.props.hero; //use destructuring to make the code more readable and reduce the code base
     let expanded = this.state.expanded;
-    //result card for a hero
     return (
-      <Card className={"searchResultCardRoot"} key={`${hero.name}-${hero.id}`}>
+      <Card className={"searchResultCardRoot"}>
         <CardMedia
           className={"media"}
-          image={`${hero.image.url}`}
-          title={`Image of ${hero.name}`}
+          image={`${image.url}`}
+          title={`Image of ${name}`}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {hero.name}
+            {name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Alignment: {hero.biography.alignment}{" "}
-            {/* Right now it says "good" instead of "Good" (same for neutral and evil) - needs to be fixed*/}
+            Full Name: {biography["full-name"]} <br></br>
+            Occupation: {work["occupation"]}
+            {/* i use biography["full-name"] instead of the dot notation here because  biography.full-name returns NaN*/}
             <br></br>
-            Publisher: {hero.biography.publisher}
+            Publisher: {biography.publisher}
           </Typography>
         </CardContent>
+
         {/* The hidden details that can be expanded */}
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>
-              {/* My gut tells me there is a better wat to do this, but I can't think of it
+            {/* My gut tells me there is a better way to do this, but I can't think of it
                     TODO: think of a better way that is more extensible */}
-              Stats:
-              <br></br>
-              Intelligence: {hero.powerstats.intelligence}
-              <br></br>
-              Strength: {hero.powerstats.strength}
-              <br></br>
-              Speed: {hero.powerstats.speed}
-              <br></br>
-              Durability: {hero.powerstats.durability}
-              <br></br>
-              Power: {hero.powerstats.power}
-              <br></br>
-              Combat: {hero.powerstats.combat}
-            </Typography>
+            {/* Biography box for the hero */}
+            <div className="resultItemBiographyBox">
+              <Typography>
+                {" "}
+                <u>Biography:</u>
+                <br></br>
+                Alignment: {biography.alignment}{" "}
+                {/* Right now it says "good" instead of "Good" (same for neutral and evil) this is due to the API returning "good" instead of "Good"- needs to be fixed*/}
+                <br></br>
+                Alter Egos: {biography["alter-egos"]}
+                <br></br>
+                Aliases: {biography["aliases"].join(", ")}{" "}
+                {/* the join is to list all the elements with a ", " between them */}
+                <br></br>
+                Place of Birth: {biography["place-of-birth"]}
+                <br></br>
+                First Appearance: {biography["first-appearance"]}
+              </Typography>
+            </div>
+            <br></br>
+            {/* Appearance box to list what the hero looks like */}
+            <div className="resultItemAppearanceBox">
+              <Typography>
+                {" "}
+                <u>Appearance:</u>
+                <br></br>
+                Gender: {appearance["gender"]}
+                <br></br>
+                Race: {appearance["race"]}
+                <br></br>
+                Height: {appearance["height"].join(", ")}
+                {/* the join is to list all the elements with a ", " between them */}
+                <br></br>
+                Weight: {appearance["weight"].join(", ")}
+                <br></br>
+                Eye color: {appearance["eye-color"]}
+                <br></br>
+                First Appearance: {appearance["hair-color"]}
+              </Typography>
+            </div>
+            <br></br>
+            {/* Box for the states for this hero */}
+            <div className="resultItemStatsBox">
+              <Typography>
+                {" "}
+                <u>Stats:</u>
+                <br></br>
+                Intelligence: {powerstats.intelligence}
+                <br></br>
+                Strength: {powerstats.strength}
+                <br></br>
+                Speed: {powerstats.speed}
+                <br></br>
+                Durability: {powerstats.durability}
+                <br></br>
+                Power: {powerstats.power}
+                <br></br>
+                Combat: {powerstats.combat}
+              </Typography>
+            </div>
           </CardContent>
         </Collapse>
         <CardActions>
