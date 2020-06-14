@@ -1,5 +1,6 @@
 //this class makes the api call to the super hero api, and returns a div with all the results
 import React from "react";
+import Paper from "@material-ui/core/Paper";
 
 import ResultItem from "./ResultItem/ResultItem";
 import "./Result.css";
@@ -52,17 +53,27 @@ export default class Result extends React.Component {
   render() {
     const results = this.state.results;
     const handler = this.props.addToTeamHandler;
-
+    //if no results are found, default to this
+    if (this.state.results.length === 0) {
+      return (
+        <div>
+          <h1>Search Results:</h1>
+          <p>Try searching for a superhero.</p>
+        </div>
+      );
+    }
     return (
       <div>
         <h1>Search Results:</h1>
-        {results.map((result) => (
-          <ResultItem
-            hero={result}
-            handler={handler}
-            key={result.id}
-          ></ResultItem>
-        ))}
+        <Paper>
+          {results.map((result) => (
+            <ResultItem
+              hero={result}
+              handler={handler}
+              key={result.id}
+            ></ResultItem>
+          ))}
+        </Paper>
       </div>
     );
   }

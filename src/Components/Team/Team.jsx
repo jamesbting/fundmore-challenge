@@ -1,6 +1,6 @@
 import React from "react";
 import TeamMember from "./TeamMember/TeamMember";
-
+import Paper from "@material-ui/core/Paper";
 import "./Team.css";
 export default class Team extends React.Component {
   constructor() {
@@ -46,15 +46,18 @@ export default class Team extends React.Component {
     return (
       <div>
         <h1>Your Team:</h1>
-        <div className="teamBox">
-          <div className="teamMembers">
-            <p>Your current team is:</p>
-            {teamMembers.map((member) => (
-              <TeamMember member={member}></TeamMember>
-            ))}
+        <Paper>
+          {" "}
+          <div className="teamBox">
+            <div className="teamMembers">
+              <p>Your current team is:</p>
+              {teamMembers.map((member) => (
+                <TeamMember member={member}></TeamMember>
+              ))}
+            </div>
+            <div className="teamStats">{stats}</div>
           </div>
-          <div className="teamStats">{stats}</div>
-        </div>
+        </Paper>
       </div>
     );
   }
