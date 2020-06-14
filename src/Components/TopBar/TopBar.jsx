@@ -1,5 +1,6 @@
-//a function that is the search bar for the program
-//TODO: give the new query to the SuperHeroApp on change
+//a function that is the search bar for the program as a react element
+//it receives as props a handler from SuperHeroApp, where SuperHeroApp will determine if the
+//new query should be submitted to the API or not (when the user presses the enter key)
 
 import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
@@ -10,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 
+//styles for the bar
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -61,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TopBar(props) {
+  //take the event and the handler that was passed down as a prop
   const onChangeQueryHandler = (event) => {
     const changeQuery = props.handler;
     changeQuery(event);
@@ -72,6 +75,7 @@ export default function TopBar(props) {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
+          {/* Title for the top left of the app bar */}
           <Typography className={classes.title} variant="h6" noWrap>
             Superhero Team Builder
           </Typography>

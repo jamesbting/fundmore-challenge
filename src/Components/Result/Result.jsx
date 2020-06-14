@@ -28,7 +28,9 @@ export default class Result extends React.Component {
   //function that takes as input a string that represents a query
   callAPI(query) {
     this.setState({ results: [] }); //empty the previous results
-    const cleanedQuery = query.replace(" ", "%20"); //clean the query to remove spaces and encode them properly as URLs
+    //clean the query to remove spaces and encode them properly as URLs, no need to sanitize the input because the React DOM already does that for us
+    //https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks
+    const cleanedQuery = query.replace(" ", "%20");
     const URL = `${this.state.baseURL}/search/${cleanedQuery}`;
     fetch(this.state.proxyURL + URL)
       .then((result) => result.json())
@@ -44,7 +46,8 @@ export default class Result extends React.Component {
       })
       .catch(console.log);
   }
-  //show the results by passing each result as a prop to ResultItem
+
+  //show the results by passing each result as a prop to ResultItem to generate a new card component with all the information
   render() {
     const results = this.state.results;
     const handler = this.props.addToTeamHandler;

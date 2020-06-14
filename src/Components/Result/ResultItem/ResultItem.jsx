@@ -22,8 +22,14 @@ export default class ResultItem extends React.Component {
   }
 
   //new search query has been give from this component's parent props - set the state and re-render
+  //since i am comparing the hero objects here !== won't work since it is comparing by reference
+  //and while JSON.stringify(props.hero) !== JSON.stringify(state.hero) would work, it returns false if the attributes are in a different order
+  //since it is from an API, the attributes being in a different order shouldnt be a big problem, however using isEqual from lodash is a more
+  //robust solution and will have slightly better performance since it wont run through the entire object, it will return false at the first difference
   static getDerivedStateFromProps(props, state) {
-    if (props.hero.toString() !== state.hero.toString()) {
+    var _ = require("lodash"); //require lodash to compare strings
+    if (!_.isEqual(props.hero, state.hero)) {
+      //if () {
       return { hero: props.hero };
     }
     return null;
@@ -139,7 +145,7 @@ export default class ResultItem extends React.Component {
           </CardContent>
         </Collapse>
         <CardActions>
-          {/* Button to handle expanding for mor details to a team */}
+          {/* Button to handle expanding for more details to a team */}
           <IconButton
             onClick={this.handleExpandClick}
             aria-expanded={expanded}
@@ -148,7 +154,6 @@ export default class ResultItem extends React.Component {
             <ExpandMoreIcon />
           </IconButton>
           {/* Button to handle adding to a team */}
-
           <Button size="small" onClick={this.handleAddToTeam}>
             Add to Team
           </Button>

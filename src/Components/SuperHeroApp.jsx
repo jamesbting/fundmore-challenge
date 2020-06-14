@@ -7,6 +7,7 @@ import TopBar from "./TopBar/TopBar";
 import Team from "./Team/Team";
 import Result from "./Result/Result";
 import CreditBox from "./CreditBox/CreditBox";
+
 import "./SuperHeroApp.css";
 
 export default class SuperHeroApp extends React.Component {
@@ -43,7 +44,7 @@ export default class SuperHeroApp extends React.Component {
 
   //pass this team handler to the results
   //this function pushes the new member to the current team array, and then updates the state
-  //once the state has been updated, the component should rerender
+  //once the state has been updated, the component should re-render
   onAddToTeamHandler = (hero) => {
     const newTeam = this.state.team;
     newTeam.push(hero);
