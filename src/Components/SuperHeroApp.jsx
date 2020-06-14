@@ -23,6 +23,7 @@ export default class SuperHeroApp extends React.Component {
     //it updates the correct state
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
+    this.removeFromTeamHandler = this.removeFromTeamHandler.bind(this);
   }
 
   //check if the props has changed (the current query and/or the team), and if so
@@ -39,7 +40,9 @@ export default class SuperHeroApp extends React.Component {
   //set the state to the new query if and only if the enter key was pressed
   onChangeQueryHandler = (event) => {
     if (event.key === "Enter") {
-      this.setState({ currentQuery: event.target.value.toLowerCase() });
+      this.setState({
+        currentQuery: event.target.value.toLowerCase(),
+      });
     }
   };
 
@@ -54,11 +57,21 @@ export default class SuperHeroApp extends React.Component {
       alert(
         `Looks like ${hero.name} is already in the team! Try adding another superhero`
       );
+      return false;
     } else {
       newTeam.push(hero);
       IDSet.add(hero.id);
       this.setState({ team: newTeam, currIDs: IDSet });
+      return true;
     }
+  };
+
+  //pass this handler to team member as a prop
+  //this function will filter the current team upon the team member getting the remove from team button is clicked
+  removeFromTeamHandler = (hero) => {
+    this.setState((prevState) => ({
+      team: prevState.team.filter((element) => element.id !== hero.id),
+    }));
   };
 
   render() {
@@ -76,7 +89,10 @@ export default class SuperHeroApp extends React.Component {
             ></Result>
           </div>
           <div className="teamContainer">
-            <Team teamMembers={team}></Team>
+            <Team
+              teamMembers={team}
+              removeFromTeamHandler={this.removeFromTeamHandler}
+            ></Team>
           </div>
           {/* Credit box */}
         </div>

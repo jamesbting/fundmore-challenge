@@ -27,7 +27,7 @@ export default class Team extends React.Component {
   }
 
   render() {
-    // if  there are no members in the team, then do nothing
+    // if there are no members in the team, then do nothing
     if (this.props.teamMembers.length === 0) {
       return (
         <div>
@@ -51,7 +51,10 @@ export default class Team extends React.Component {
             <div className="teamMembers">
               <p>Your current team is:</p>
               {teamMembers.map((member) => (
-                <TeamMember member={member}></TeamMember>
+                <TeamMember
+                  member={member}
+                  removeFromTeamHandler={this.props.removeFromTeamHandler}
+                ></TeamMember>
               ))}
             </div>
             <div className="teamStats">{stats}</div>

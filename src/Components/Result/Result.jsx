@@ -18,6 +18,7 @@ export default class Result extends React.Component {
       proxyURL: "https://cors-anywhere.herokuapp.com/",
       results: [],
     };
+    this.handlerRemoveResult = this.handleRemoveResult.bind(this);
   }
 
   //check if the query has changed - if so call the api, and then re render this component with the new results
@@ -48,11 +49,16 @@ export default class Result extends React.Component {
       })
       .catch(console.log);
   }
+  handleRemoveResult = (hero) => {
+    this.setState((prevState) => ({
+      results: prevState.results.filter((element) => element.id !== hero.id),
+    }));
+  };
 
   //show the results by passing each result as a prop to ResultItem to generate a new card component with all the information
   render() {
     const results = this.state.results;
-    const handler = this.props.addToTeamHandler;
+    const addHandler = this.props.addToTeamHandler;
     //if no results are found, default to this
     if (this.state.results.length === 0) {
       return (
@@ -69,8 +75,9 @@ export default class Result extends React.Component {
           {results.map((result) => (
             <ResultItem
               hero={result}
-              handler={handler}
+              addHandler={addHandler}
               key={result.id}
+              removeHandler={this.handleRemoveResult}
             ></ResultItem>
           ))}
         </Paper>

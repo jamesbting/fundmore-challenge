@@ -4,6 +4,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
 
 import "./TeamMember.css";
 export default class TeamMember extends React.Component {
@@ -18,7 +19,9 @@ export default class TeamMember extends React.Component {
     }
     return null;
   }
-
+  handleRemoveFromTeam = () => {
+    this.props.removeFromTeamHandler(this.state.member);
+  };
   render() {
     const member = this.props.member;
     return (
@@ -48,7 +51,11 @@ export default class TeamMember extends React.Component {
             Combat: {member.powerstats.combat}
           </Typography>
         </CardContent>
-        <CardActions></CardActions>
+        <CardActions>
+          <Button size="small" onClick={this.handleRemoveFromTeam}>
+            Remove from team{" "}
+          </Button>
+        </CardActions>
       </Card>
     );
   }

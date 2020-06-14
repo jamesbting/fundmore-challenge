@@ -15,9 +15,7 @@ export default class ResultItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hero: this.props.hero,
       expanded: false,
-      handler: props.handler,
     };
   }
 
@@ -29,7 +27,6 @@ export default class ResultItem extends React.Component {
   static getDerivedStateFromProps(props, state) {
     var _ = require("lodash"); //require lodash to compare strings
     if (!_.isEqual(props.hero, state.hero)) {
-      //if () {
       return { hero: props.hero };
     }
     return null;
@@ -41,10 +38,20 @@ export default class ResultItem extends React.Component {
   };
 
   //handler for adding to team
+  //this handler should come from the SuperHeroApp component and passed through result to this component as a prop
   handleAddToTeam = () => {
-    const handler = this.state.handler;
-    const hero = this.state.hero;
-    handler(hero);
+    const addHandler = this.props.addHandler;
+    const hero = this.props.hero;
+    //check if it was properly added to the team, and if so, remove it from the results
+    if (addHandler(hero)) {
+      this.handleRemoveFromResults(hero);
+    }
+  };
+
+  //handler for removing from results once it has been added
+  //this handler should be passed as a prop from the Result component
+  handleRemoveFromResults = (hero) => {
+    this.props.removeHandler(hero);
   };
 
   render() {
