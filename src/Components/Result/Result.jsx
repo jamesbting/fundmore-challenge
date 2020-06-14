@@ -44,14 +44,13 @@ export default class Result extends React.Component {
           this.setState({ results: data.results });
         } else {
           alert(
-            `No such superhero with the name ${query} could be found. Try searching for another one.`
+            `No such superhero with the name "${query}" could be found. Try searching for another one.`
           );
         }
       })
       .catch(console.log);
   }
-
-  //show the reuslts by passing each result as a prop to ResultItem
+  //show the results by passing each result as a prop to ResultItem
   render() {
     const results = this.state.results;
     const handler = this.props.addToTeamHandler;

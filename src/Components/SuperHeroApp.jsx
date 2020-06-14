@@ -1,4 +1,5 @@
 //a wrapper class that will be responsible for the interaction between all the components
+//will pass data between the components
 import React from "react";
 
 //custom components import
@@ -6,14 +7,17 @@ import TopBar from "./TopBar/TopBar";
 import Team from "./Team/Team";
 import Result from "./Result/Result";
 import "./SuperHeroApp.css";
-//KNOWN BUG: NOT ADDING THE CORRECT TEAM MEMBER
+
 export default class SuperHeroApp extends React.Component {
   constructor() {
     super();
     this.state = {
       team: [],
-      currentQuery: "batman", //default to batman on start because i dont know how to deal with an empty query, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
+      currentQuery: "batman", //default to batman on start because i dont know how to deal with an empty query on initial load, in java I would use the Optional wrapper class, but I am not aware of any similar class in Javascript
     };
+
+    //bind the this key word to this instance of the SuperHero so that when it is called outside of the function
+    //it updates the correct state
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
   }
