@@ -16,11 +16,10 @@ export default class Result extends React.Component {
       proxyURL: "https://cors-anywhere.herokuapp.com/",
       query: props.query,
       results: [],
-      addToTeamHandler: props.addToTeamHandler,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps.query !== this.state.query) {
       this.callAPI(nextProps.query);
       this.setState({ query: nextProps.query });
@@ -34,15 +33,15 @@ export default class Result extends React.Component {
   }
 
   callAPI(query) {
+    this.setState({ results: [] }); //empty the previous results
     const cleanedQuery = query.replace(" ", "%20"); //clean the query to remove spaces and encode them properly as URLs
-
     const URL = `${this.state.baseURL}/search/${cleanedQuery}`;
     fetch(this.state.proxyURL + URL)
       .then((result) => result.json())
       .then((data) => {
         //only update upon receiving a success
         if (data.response === "success") {
-          this.setState({ results: data.results, sucessfulQuery: true });
+          this.setState({ results: data.results });
         } else {
           alert(
             `No such superhero with the name ${query} could be found. Try searching for another one.`
@@ -55,10 +54,11 @@ export default class Result extends React.Component {
   //show the reuslts by passing each result as a prop to ResultItem
   render() {
     const results = this.state.results;
-    const handler = this.state.addToTeamHandler;
+    const handler = this.props.addToTeamHandler;
+
     return (
       <div>
-        <h1>Results:</h1>
+        <h1>Search Results:</h1>
         {results.map((result) => (
           <ResultItem hero={result} handler={handler}></ResultItem>
         ))}

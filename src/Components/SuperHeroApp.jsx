@@ -6,7 +6,7 @@ import TopBar from "./TopBar/TopBar";
 import Team from "./Team/Team";
 import Result from "./Result/Result";
 import "./SuperHeroApp.css";
-
+//KNOWN BUG: NOT ADDING THE CORRECT TEAM MEMBER
 export default class SuperHeroApp extends React.Component {
   constructor() {
     super();
@@ -28,6 +28,7 @@ export default class SuperHeroApp extends React.Component {
   }
 
   //pass this query change handler to the search bar
+  //set the state to the new query if and only if the enter key was pressed
   onChangeQueryHandler = (event) => {
     if (event.key === "Enter") {
       this.setState({ currentQuery: event.target.value.toLowerCase() });
@@ -35,12 +36,12 @@ export default class SuperHeroApp extends React.Component {
   };
 
   //pass this team handler to the results
+  //this function pushes the new member to the current team array, and then updates the state
+  //once the state has been updated, the component should rerender
   onAddToTeamHandler = (hero) => {
-    console.log("pushing");
     const newTeam = this.state.team;
     newTeam.push(hero);
     this.setState({ team: newTeam });
-    console.log(this.state.team);
   };
 
   render() {

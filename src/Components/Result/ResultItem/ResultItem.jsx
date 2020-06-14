@@ -24,11 +24,17 @@ export default class ResultItem extends React.Component {
   }
 
   //new search
-  componentWillReceiveProps(newProps) {
-    if (newProps.hero.toString() !== this.props.hero.toString()) {
-      this.setState({ hero: newProps.hero });
+  static getDerivedStateFromProps(props, state) {
+    if (props.hero.toString() !== state.hero.toString()) {
+      return { her: props.hero };
     }
+    return null;
   }
+  // componentWillReceiveProps(newProps) {
+  //   if (newProps.hero.toString() !== this.props.hero.toString()) {
+  //     this.setState({ hero: newProps.hero });
+  //   }
+  // }
 
   //handle when expanded
   handleExpandClick = () => {

@@ -10,14 +10,16 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 import "./TeamMember.css";
 export default class TeamMember extends React.Component {
+  constructor() {
+    super();
+    this.state = { member: null };
+  }
   //check for new props, and update accordingly
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    if (nextProps.member !== this.props.member) {
-      this.setState({
-        member: nextProps.member,
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (props.member !== state.member) {
+      return { member: props.member };
     }
+    return null;
   }
 
   render() {
