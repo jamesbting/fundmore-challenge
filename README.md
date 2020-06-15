@@ -74,11 +74,13 @@ where instead of 123456, you would put your own personal API key. Since this app
 ## Notes about the design
 
 1. Single-view vs. Multi-view
+
    While the requirements imply that the superhero details and the team should be on different pages, when I used my own application and after thinking about it, since it is a team builder, I felt it would be better to show them on the same page, so the user will be able to compare the superheroes that were searched to the ones that are currently on the team. While this is probably against the requirements, in my opinion it would be better since the user will be able to see the differences between their team members and the search results, an important consideration for a team builder app.
 
    Since I will modify the code to be a multi-view application, here is an example of the single view page in action: https://gfycat.com/unconsciousincompleteicefish
 
 2. API Keys
+
    Since this is a front-end only app, there is no backend to store API keys completely hidden from view. Obviously having the API key hardcoded into the app is a terrible idea, since anyone with access to the source code will be able to use it freely. Therefore, I choose to store my API key as an environment variable of the development server. In production, you should not do this either, since anyone who inspects the production files will be able to determine your API key. However, since this is only for a coding challenge and not an actually deployed application, this solution should suffice.
 
    In a production environment, I would have my application's back end handle all the API requests and the management of the API key, thus keeping the API key a secret. (https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app)
