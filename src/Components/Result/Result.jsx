@@ -28,6 +28,10 @@ export default class Result extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.callAPI(this.props.query);
+  }
+
   //function that takes as input a string that represents a query
   callAPI(query) {
     this.setState({ results: [] }); //empty the previous results

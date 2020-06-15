@@ -17,6 +17,7 @@ export default class SuperHeroApp extends React.Component {
       currIDs: new Set(),
       team: [],
       currentQuery: "", //default to empty string on start
+      showingTeam: true,
     };
 
     //bind the this key word to this instance of the SuperHero so that when it is called outside of the function
@@ -24,6 +25,7 @@ export default class SuperHeroApp extends React.Component {
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
     this.removeFromTeamHandler = this.removeFromTeamHandler.bind(this);
+    //this.onChangeViewHandler = this.onChangeViewHandler.bind(this);
   }
 
   //check if the props has changed (the current query and/or the team), and if so
@@ -42,6 +44,7 @@ export default class SuperHeroApp extends React.Component {
     if (event.key === "Enter") {
       this.setState({
         currentQuery: event.target.value.toLowerCase(),
+        showingTeam: false,
       });
     }
   };
@@ -61,7 +64,7 @@ export default class SuperHeroApp extends React.Component {
     } else {
       newTeam.push(hero);
       IDSet.add(hero.id);
-      this.setState({ team: newTeam, currIDs: IDSet });
+      this.setState({ team: newTeam, currIDs: IDSet, showingTeam: true });
       return true;
     }
   };
@@ -74,32 +77,52 @@ export default class SuperHeroApp extends React.Component {
     }));
   };
 
+  // onChangeViewHandler = () =>
+  //   this.setState((prevState) => ({ showingTeam: !prevState.showingTeam }));
+
   render() {
     const team = this.state.team;
-    return (
-      <>
-        {/* Make the top bar element */}
-        <TopBar handler={this.onChangeQueryHandler}></TopBar>
-        {/* return the super hero details page */}
-        <div className="appContainer">
-          <div className="resultsContainer">
-            <Result
-              query={this.state.currentQuery}
-              addToTeamHandler={this.onAddToTeamHandler}
-            ></Result>
+    const showingTeam = this.state.showingTeam;
+    if (showingTeam) {
+      return (
+        <>
+          {/* Make the top bar element */}
+          <TopBar changeQueryHandler={this.onChangeQueryHandler}></TopBar>
+          {/* return the super hero details page */}
+          <div className="appContainer">
+            <div className="teamContainer">
+              <Team
+                teamMembers={team}
+                removeFromTeamHandler={this.removeFromTeamHandler}
+              ></Team>
+            </div>
+            {/* Credit box */}
           </div>
-          <div className="teamContainer">
-            <Team
-              teamMembers={team}
-              removeFromTeamHandler={this.removeFromTeamHandler}
-            ></Team>
+          <div className="bottomContainer">
+            <CreditBox></CreditBox>
           </div>
-          {/* Credit box */}
-        </div>
-        <div className="bottomContainer">
-          <CreditBox></CreditBox>
-        </div>
-      </>
-    );
+        </>
+      );
+    } else {
+      return (
+        <>
+          {/* Make the top bar element */}
+          <TopBar changeQueryHandler={this.onChangeQueryHandler}></TopBar>
+          {/* return the super hero details page */}
+          <div className="appContainer">
+            <div className="resultsContainer">
+              <Result
+                query={this.state.currentQuery}
+                addToTeamHandler={this.onAddToTeamHandler}
+              ></Result>
+            </div>
+            {/* Credit box */}
+          </div>
+          <div className="bottomContainer">
+            <CreditBox></CreditBox>
+          </div>
+        </>
+      );
+    }
   }
 }

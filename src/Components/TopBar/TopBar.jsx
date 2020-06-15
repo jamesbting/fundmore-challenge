@@ -1,4 +1,5 @@
 //a function that is the search bar for the program as a react element
+//its a function and not a class since it won't have a life cycle, so there is no need for a state - makes it simpler and more maintainable
 //it receives as props a handler from SuperHeroApp, where SuperHeroApp will determine if the
 //new query should be submitted to the API or not (when the user presses the enter key)
 
@@ -6,7 +7,7 @@ import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-
+import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 export default function TopBar(props) {
   //take the event and the handler that was passed down as a prop
   const onChangeQueryHandler = (event) => {
-    const changeQuery = props.handler;
+    const changeQuery = props.changeQueryHandler;
     changeQuery(event);
   };
 

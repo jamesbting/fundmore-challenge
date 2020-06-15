@@ -1,18 +1,17 @@
 .appContainer {
-  display: inline-flex;
-  flex-direction: row;
   padding-left: 10%;
   padding-right: 10%;
   width: 80%;
+  text-align: center;
 }
 
 .teamContainer {
-  width: 70%;
-  padding: 2.5%;
+  display: inline-block;
+  width: 80%;
 }
 .resultsContainer {
-  width: 30%;
-  padding: 2.5%;
+  display: inline-block;
+  width: 60%;
 }
 .bottomContainer {
   padding-left: 10%;
