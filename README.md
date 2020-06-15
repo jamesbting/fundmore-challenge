@@ -32,9 +32,18 @@ Before starting the application, you must install the following dependencies.
 Dependencies: material-ui/core, material-ui/icons, lodash
 
 To install material-ui, type the following into the command line:
-`npm install @material-ui/core`
-`npm install @material-ui/icons`
-`npm i --save lodash`
+
+```bash
+npm install @material-ui/core
+```
+
+```bash
+npm install @material-ui/icons
+```
+
+```bash
+npm i --save lodash
+```
 
 In the Result.jsx file, (src\Components\Result\Result.jsx) ensure that the value in API_KEY is your API key
 
