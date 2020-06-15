@@ -41,8 +41,8 @@ export default class Result extends React.Component {
       return;
     }
 
-    //non empty string
-
+    //non empty string query, pass it to the API to get the information
+    //in an ideal world, this would have been handled by the back-end, but this app has no real back-end so this React component will handle it
     //clean the query to remove spaces and encode them properly as URLs, no need to sanitize the input because the React DOM already does that for us
     //https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks
     const cleanedQuery = query.replace(" ", "%20");
@@ -93,7 +93,7 @@ export default class Result extends React.Component {
             <ResultItem
               hero={result}
               addHandler={addHandler}
-              key={result.id}
+              key={`${result.id}-${results.indexOf(result)}`}
               removeHandler={this.handleRemoveResult}
             ></ResultItem>
           ))}

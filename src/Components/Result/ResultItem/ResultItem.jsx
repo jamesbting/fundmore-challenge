@@ -76,6 +76,7 @@ export default class ResultItem extends React.Component {
       powerstats,
       appearance,
       work,
+      id,
     } = this.props.hero; //use destructuring to make the code more readable and reduce the code base
 
     //these two arrays are here so that, in case a new stat is added, we can just add it to the stat array and the name, and then the map function below
@@ -101,7 +102,7 @@ export default class ResultItem extends React.Component {
     let expanded = this.state.expanded;
 
     return (
-      <Card className={"searchResultCardRoot"}>
+      <Card className={"searchResultCardRoot"} key={id}>
         <CardMedia
           className={"media"}
           image={`${image.url}`}

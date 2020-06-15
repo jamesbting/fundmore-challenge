@@ -85,6 +85,28 @@ where instead of 123456, you would put your own personal API key. Since this app
 
    In a production environment, I would have my application's back end handle all the API requests and the management of the API key, thus keeping the API key a secret. (https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app)
 
+## Known issues:
+
+1. Unique key prop
+   Warning: Each child in a list should have a unique "key" prop.
+
+Check the render method of `ResultItem`. See https://fb.me/react-warning-keys for more information.
+in p (at ResultItem.jsx:174)
+in ResultItem (at Result.jsx:93)
+in div (created by ForwardRef(Paper))
+in ForwardRef(Paper) (created by WithStyles(ForwardRef(Paper)))
+in WithStyles(ForwardRef(Paper)) (at Result.jsx:91)
+in div (at Result.jsx:89)
+in Result (at SuperHeroApp.jsx:140)
+in div (at SuperHeroApp.jsx:139)
+in div (at SuperHeroApp.jsx:138)
+in SuperHeroApp (at App.js:14)
+in div (at App.js:8)
+in App (at src/index.js:9)
+in StrictMode (at src/index.js:8)
+
+The component in ResultItem gives an error about not having a unique key prop, despite having a unique key prop.
+
 ## Things I would've liked to add:
 
 1. A suggestion system for search queries
