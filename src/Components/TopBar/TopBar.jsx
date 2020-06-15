@@ -70,6 +70,12 @@ export default function TopBar(props) {
     changeQuery(event);
   };
 
+  const onChangeViewHandler = () => {
+    console.log(props);
+    const changeView = props.changeViewHandler();
+    changeView();
+  };
+
   const classes = useStyles();
 
   return (
@@ -95,6 +101,9 @@ export default function TopBar(props) {
             />
           </div>
           <div className={classes.grow} />
+          <Button variant="contained" onClick={onChangeViewHandler()}>
+            Change view
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
