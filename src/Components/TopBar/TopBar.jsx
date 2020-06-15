@@ -7,7 +7,6 @@ import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
@@ -70,12 +69,6 @@ export default function TopBar(props) {
     changeQuery(event);
   };
 
-  const onChangeViewHandler = () => {
-    console.log(props);
-    const changeView = props.changeViewHandler();
-    changeView();
-  };
-
   const classes = useStyles();
 
   return (
@@ -101,9 +94,6 @@ export default function TopBar(props) {
             />
           </div>
           <div className={classes.grow} />
-          <Button variant="contained" onClick={onChangeViewHandler()}>
-            Change view
-          </Button>
         </Toolbar>
       </AppBar>
     </div>

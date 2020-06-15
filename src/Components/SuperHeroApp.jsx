@@ -25,7 +25,6 @@ export default class SuperHeroApp extends React.Component {
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
     this.removeFromTeamHandler = this.removeFromTeamHandler.bind(this);
-    //this.onChangeViewHandler = this.onChangeViewHandler.bind(this);
   }
 
   //check if the props has changed (the current query and/or the team), and if so
@@ -76,9 +75,6 @@ export default class SuperHeroApp extends React.Component {
       team: prevState.team.filter((element) => element.id !== hero.id),
     }));
   };
-
-  // onChangeViewHandler = () =>
-  //   this.setState((prevState) => ({ showingTeam: !prevState.showingTeam }));
 
   render() {
     const team = this.state.team;
