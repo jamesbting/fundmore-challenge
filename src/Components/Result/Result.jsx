@@ -3,7 +3,6 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 
 import ResultItem from "./ResultItem/ResultItem";
-import "./Result.css";
 
 const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key
 
@@ -35,6 +34,12 @@ export default class Result extends React.Component {
   //function that takes as input a string that represents a query
   callAPI(query) {
     this.setState({ results: [] }); //empty the previous results
+
+    //if the query is the empty string, do not call the api, and instead do nothing
+    if (query === "") {
+      return;
+    }
+
     //clean the query to remove spaces and encode them properly as URLs, no need to sanitize the input because the React DOM already does that for us
     //https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks
     const cleanedQuery = query.replace(" ", "%20");

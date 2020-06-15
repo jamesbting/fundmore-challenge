@@ -10,6 +10,8 @@ import CreditBox from "./CreditBox/CreditBox";
 
 import "./SuperHeroApp.css";
 
+//TO DO: ADD A BUTTON TO CHANGE TO THE SEARCH RESULTS AND THE TEAM VIEW
+
 export default class SuperHeroApp extends React.Component {
   constructor() {
     super();
@@ -25,6 +27,7 @@ export default class SuperHeroApp extends React.Component {
     this.onChangeQueryHandler = this.onChangeQueryHandler.bind(this);
     this.onAddToTeamHandler = this.onAddToTeamHandler.bind(this);
     this.removeFromTeamHandler = this.removeFromTeamHandler.bind(this);
+    this.changeViewHandler = this.changeViewHandler.bind(this);
   }
 
   //check if the props has changed (the current query and/or the team), and if so
@@ -76,6 +79,10 @@ export default class SuperHeroApp extends React.Component {
     }));
   };
 
+  changeViewHandler = () => {
+    this.setState((prevState) => ({ showingTeam: !prevState.showingTeam }));
+  };
+
   render() {
     const team = this.state.team;
     const showingTeam = this.state.showingTeam;
@@ -83,7 +90,11 @@ export default class SuperHeroApp extends React.Component {
       return (
         <>
           {/* Make the top bar element */}
-          <TopBar changeQueryHandler={this.onChangeQueryHandler}></TopBar>
+          <TopBar
+            changeQueryHandler={this.onChangeQueryHandler}
+            changeViewHandler={this.changeViewHandler}
+            message={"See search results"}
+          ></TopBar>
           {/* return the super hero details page */}
           <div className="appContainer">
             <div className="teamContainer">
@@ -93,8 +104,6 @@ export default class SuperHeroApp extends React.Component {
               ></Team>
             </div>
             {/* Credit box */}
-          </div>
-          <div className="bottomContainer">
             <CreditBox></CreditBox>
           </div>
         </>
@@ -103,7 +112,11 @@ export default class SuperHeroApp extends React.Component {
       return (
         <>
           {/* Make the top bar element */}
-          <TopBar changeQueryHandler={this.onChangeQueryHandler}></TopBar>
+          <TopBar
+            changeQueryHandler={this.onChangeQueryHandler}
+            changeViewHandler={this.changeViewHandler}
+            message={"See your team"}
+          ></TopBar>
           {/* return the super hero details page */}
           <div className="appContainer">
             <div className="resultsContainer">
@@ -113,8 +126,6 @@ export default class SuperHeroApp extends React.Component {
               ></Result>
             </div>
             {/* Credit box */}
-          </div>
-          <div className="bottomContainer">
             <CreditBox></CreditBox>
           </div>
         </>

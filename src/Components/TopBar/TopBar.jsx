@@ -10,6 +10,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
+import Button from "@material-ui/core/Button";
 
 //styles for the bar
 const useStyles = makeStyles((theme) => ({
@@ -69,6 +70,11 @@ export default function TopBar(props) {
     changeQuery(event);
   };
 
+  const changeViewHandler = () => {
+    const changeView = props.changeViewHandler;
+    changeView();
+  };
+
   const classes = useStyles();
 
   return (
@@ -94,6 +100,9 @@ export default function TopBar(props) {
             />
           </div>
           <div className={classes.grow} />
+          <Button onClick={() => changeViewHandler()} variant="contained">
+            {props.message}
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
