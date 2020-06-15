@@ -5,6 +5,8 @@
 import React from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
+import PropTypes from "prop-types";
+
 import SearchIcon from "@material-ui/icons/Search";
 
 //some styles to make it pretty
@@ -81,3 +83,7 @@ export default function SearchBar(props) {
     </>
   );
 }
+
+SearchBar.propTypes = {
+  changeQueryHandler: PropTypes.func.isRequired,
+};

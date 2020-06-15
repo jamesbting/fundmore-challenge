@@ -1,8 +1,12 @@
-SearchResultCardRoot {
-  max-width: 345px;
+.resultItemCardRoot {
   height: 100%;
+  margin-bottom: 5%;
 }
 
-resultsTitle {
+.resultsTitle {
   font-size: 18px;
+}
+
+.resultItemStatsBox {
+  display: block;
 }

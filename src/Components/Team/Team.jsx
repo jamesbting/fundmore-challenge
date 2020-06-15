@@ -3,6 +3,8 @@
 import React from "react";
 import TeamMember from "./TeamMember/TeamMember";
 import Paper from "@material-ui/core/Paper";
+import PropTypes from "prop-types";
+
 import "./Team.css";
 export default class Team extends React.Component {
   constructor() {
@@ -52,7 +54,6 @@ export default class Team extends React.Component {
           {" "}
           <div className="teamBox">
             <div className="teamMembers">
-              <p>Your current team is:</p>
               {teamMembers.map((member) => (
                 <TeamMember
                   member={member}
@@ -109,3 +110,8 @@ export default class Team extends React.Component {
     return newAverages;
   }
 }
+
+Team.propTypes = {
+  teamMembers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  removeFromTeamHandler: PropTypes.func.isRequired,
+};

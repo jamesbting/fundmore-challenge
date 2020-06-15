@@ -9,8 +9,16 @@ postcondition: it creates a div that contains the following text: "This React ap
 the name and purpose can be modified by the parent class
 */
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function CreditBox(props) {
+  CreditBox.propTypes = {
+    name: PropTypes.string.isRequired,
+    purpose: PropTypes.string.isRequired,
+    creatorLink: PropTypes.string.isRequired,
+    sourceCodeLink: PropTypes.string.isRequired,
+  };
+
   return (
     <div className="creditBox">
       <p>

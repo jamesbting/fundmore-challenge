@@ -4,6 +4,7 @@
 //new query should be submitted to the API or not (when the user presses the enter key)
 
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -54,3 +55,8 @@ export default function TopBar(props) {
     </div>
   );
 }
+
+TopBar.propTypes = {
+  changeQueryHandler: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+};

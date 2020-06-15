@@ -2,6 +2,7 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
 import ResultItem from "./ResultItem/ResultItem";
+import PropTypes from "prop-types";
 
 //see my notes in the README as to why using environment variables is a bad idea for production builds
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -18,7 +19,9 @@ export default class Result extends React.Component {
       results: [],
       responseMessage: "Try searching for a superhero",
     };
+    this.wrapper = React.createRef();
     this.handleRemoveResult = this.handleRemoveResult.bind(this);
+    this.abortController = new AbortController();
   }
 
   //check if the query has changed - if so call the api, and then re render this component with the new results
@@ -30,6 +33,11 @@ export default class Result extends React.Component {
 
   componentDidMount() {
     this.callAPI(this.props.query);
+  }
+
+  //if the view is changed early, abort the call
+  componentWillUnmount() {
+    this.abortController.abort();
   }
 
   //function that takes as input a string that represents a query
@@ -47,7 +55,7 @@ export default class Result extends React.Component {
     //https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks
     const cleanedQuery = query.replace(" ", "%20");
     const URL = `${this.state.baseURL}/search/${cleanedQuery}`;
-    fetch(this.state.proxyURL + URL)
+    fetch(this.state.proxyURL + URL, { signal: this.abortController.signal })
       .then((result) => result.json())
       .then((data) => {
         //only update upon receiving a success
@@ -86,19 +94,22 @@ export default class Result extends React.Component {
     }
 
     return (
-      <div>
+      <div className="resultBox" ref={this.wrapper}>
         <h1>Search Results:</h1>
-        <Paper>
-          {results.map((result) => (
-            <ResultItem
-              hero={result}
-              addHandler={addHandler}
-              key={`${result.id}-${results.indexOf(result)}`}
-              removeHandler={this.handleRemoveResult}
-            ></ResultItem>
-          ))}
-        </Paper>
+        {results.map((result) => (
+          <ResultItem
+            hero={result}
+            addHandler={addHandler}
+            key={`${result.id}-${results.indexOf(result)}`}
+            removeHandler={this.handleRemoveResult}
+          ></ResultItem>
+        ))}
       </div>
     );
   }
 }
+
+Result.propTypes = {
+  query: PropTypes.string.isRequired,
+  addToTeamHandler: PropTypes.func.isRequired,
+};

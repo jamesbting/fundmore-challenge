@@ -1,5 +1,6 @@
 ## Set up
 
+This set up guide is written assuming you already have a working version of nodeJS installed. If you don't install it here: https://nodejs.org/en/download/
 To set up this project, first clone the repository
 
 ```bash
@@ -85,18 +86,21 @@ where instead of 123456, you would put your own personal API key. Since this app
 
    In a production environment, I would have my application's back end handle all the API requests and the management of the API key, thus keeping the API key a secret. (https://stackoverflow.com/questions/48699820/how-do-i-hide-api-key-in-create-react-app)
 
+3. PropTypes
+   I use PropTypes to enforce Design by Contract
+
 ## Known issues:
 
 1. Unique key prop
-   Warning: Each child in a list should have a unique "key" prop.
+   index.js:1 Warning: Each child in a list should have a unique "key" prop.
 
 Check the render method of `ResultItem`. See https://fb.me/react-warning-keys for more information.
-in p (at ResultItem.jsx:174)
-in ResultItem (at Result.jsx:93)
+in WithStyles(ForwardRef(Typography)) (at ResultItem.jsx:175)
+in ResultItem (at Result.jsx:100)
 in div (created by ForwardRef(Paper))
 in ForwardRef(Paper) (created by WithStyles(ForwardRef(Paper)))
-in WithStyles(ForwardRef(Paper)) (at Result.jsx:91)
-in div (at Result.jsx:89)
+in WithStyles(ForwardRef(Paper)) (at Result.jsx:98)
+in div (at Result.jsx:96)
 in Result (at SuperHeroApp.jsx:140)
 in div (at SuperHeroApp.jsx:139)
 in div (at SuperHeroApp.jsx:138)
@@ -105,7 +109,11 @@ in div (at App.js:8)
 in App (at src/index.js:9)
 in StrictMode (at src/index.js:8)
 
-The component in ResultItem gives an error about not having a unique key prop, despite having a unique key prop.
+Cause:
+Using `<Typography></Typography>` inside of .map() in order to list the stats on separate lines
+Fixes:
+Removing the `<Typography></Typography>` suppresses the warning, but then the stats are listed as a paragraph.
+Listing each element also suppresses the warning, but then the code becomes less maintainable/extensible
 
 ## Things I would've liked to add:
 

@@ -25,6 +25,7 @@ export default class SuperHeroApp extends React.Component {
       currentQuery: "", //default to empty string on start
       showingTeam: true,
     };
+    this.wrapper = React.createRef();
 
     //bind the this key word to this instance of the SuperHero so that when it is called outside of the function
     //it updates the correct state
@@ -136,7 +137,7 @@ export default class SuperHeroApp extends React.Component {
           ></TopBar>
           {/* return the super hero details page */}
           <div className="appContainer">
-            <div className="resultsContainer">
+            <div className="resultsContainer" ref={this.wrapper}>
               <Result
                 query={this.state.currentQuery}
                 addToTeamHandler={this.onAddToTeamHandler}

@@ -2,6 +2,8 @@
 //it is a class and not a functional component because it has a lifecycle, and can be updated to feature new members, and also has an expanded state
 
 import React from "react";
+import PropTypes from "prop-types";
+
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -102,7 +104,7 @@ export default class ResultItem extends React.Component {
     let expanded = this.state.expanded;
 
     return (
-      <Card className={"searchResultCardRoot"} key={id}>
+      <Card className={"resultItemCardRoot"} key={id}>
         <CardMedia
           className={"media"}
           image={`${image.url}`}
@@ -169,11 +171,11 @@ export default class ResultItem extends React.Component {
             <br></br>
             {/* Box for the states for this hero */}
             <div className="resultItemStatsBox">
-              <Typography>
-                {statNames.map((statName) => (
-                  <p>{`${statName}: ${stats[statNames.indexOf(statName)]}`}</p>
-                ))}
-              </Typography>
+              {statNames.map((statName) => (
+                <Typography id={statName}>{`${statName}: ${
+                  stats[statNames.indexOf(statName)]
+                }`}</Typography>
+              ))}
             </div>
           </CardContent>
         </Collapse>
@@ -201,3 +203,9 @@ export default class ResultItem extends React.Component {
     );
   }
 }
+
+ResultItem.propTypes = {
+  hero: PropTypes.object.isRequired,
+  addHandler: PropTypes.func.isRequired,
+  removeHandler: PropTypes.func.isRequired,
+};
