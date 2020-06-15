@@ -77,7 +77,7 @@ where instead of 123456, you would put your own personal API key. Since this app
 
    While the requirements imply that the superhero details and the team should be on different pages, when I used my own application and after thinking about it, since it is a team builder, I felt it would be better to show them on the same page, so the user will be able to compare the superheroes that were searched to the ones that are currently on the team. While this is probably against the requirements, in my opinion it would be better since the user will be able to see the differences between their team members and the search results, an important consideration for a team builder app.
 
-   Since I will modify the code to be a multi-view application, here is an example of the single view page in action: https://gfycat.com/unconsciousincompleteicefish
+   Since I modified the code to be a multi-view application, here is an example of the single view version in action: https://gfycat.com/unconsciousincompleteicefish
 
 2. API Keys
 
