@@ -1,10 +1,10 @@
 //this class makes the api call to the super hero api, and returns a div with all the results
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-
 import ResultItem from "./ResultItem/ResultItem";
 
-const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key if you fork this repository (https://superheroapi.com/index.html)
+//see my notes in the README as to why using environment variables is a bad idea for production builds
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export default class Result extends React.Component {
   //baseURL: the base url to call the api with (API key should be included here)
@@ -16,6 +16,7 @@ export default class Result extends React.Component {
       baseURL: `https://superheroapi.com/api/${API_KEY}`,
       proxyURL: "https://cors-anywhere.herokuapp.com/",
       results: [],
+      responseMessage: "Try searching for a superhero",
     };
     this.handleRemoveResult = this.handleRemoveResult.bind(this);
   }
@@ -54,9 +55,9 @@ export default class Result extends React.Component {
           this.setState({ results: data.results });
         } else {
           //tell the user no such superhero exists
-          alert(
-            `No such superhero with the name "${query}" could be found. Try searching for another one.`
-          );
+          this.setState({
+            responseMessage: `No such superhero with the name "${query}" could be found. Try searching for another one.`,
+          });
         }
       })
       .catch(console.log);
@@ -79,7 +80,7 @@ export default class Result extends React.Component {
       return (
         <div>
           <h1>Search Results:</h1>
-          <p>Try searching for a superhero.</p>
+          <p>{this.state.responseMessage}</p>
         </div>
       );
     }

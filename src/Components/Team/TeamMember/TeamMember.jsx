@@ -30,9 +30,9 @@ export default class TeamMember extends React.Component {
   };
 
   render() {
-    const { id, name, image, powerstats } = this.props.member; //destructure to reduce the code base
-    //for building the list using the map function
+    const { id, name, image, powerstats } = this.props.member; //de-structure to reduce the code base and improve readability
 
+    //for building the list using the map function
     //these two arrays are here so that, in case a new stat is added, we can just add it to the stat array and the name, and then the map function below
     //will add it automatically - promotes maintainability and extensibility of the code
     const stats = [
@@ -71,7 +71,12 @@ export default class TeamMember extends React.Component {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={this.handleRemoveFromTeam}>
+          <Button
+            size="small"
+            onClick={this.handleRemoveFromTeam}
+            variant="contained"
+            color="primary"
+          >
             Remove from team{" "}
           </Button>
         </CardActions>

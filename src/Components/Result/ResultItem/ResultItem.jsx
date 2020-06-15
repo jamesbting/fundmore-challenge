@@ -187,7 +187,12 @@ export default class ResultItem extends React.Component {
             {this.getExpandIcon()}
           </IconButton>
           {/* Button to handle adding to a team */}
-          <Button size="small" onClick={this.handleAddToTeam}>
+          <Button
+            size="small"
+            onClick={this.handleAddToTeam}
+            variant="contained"
+            color="primary"
+          >
             Add to Team
           </Button>
         </CardActions>

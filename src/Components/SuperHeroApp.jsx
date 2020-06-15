@@ -38,7 +38,9 @@ export default class SuperHeroApp extends React.Component {
   //set the state appropriately and then re-render this component and children
   componentDidUpdate(prevProps) {
     if (this.props.currentQuery !== prevProps.currentQuery) {
-      this.setState({ currentQuery: this.props.currentQuery });
+      this.setState((prevState, props) => ({
+        currentQuery: props.currentQuery,
+      }));
     } else if (this.props.team !== prevProps.team) {
       this.setState({ team: this.props.team });
     }
