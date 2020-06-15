@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import SearchBar from "./SearchBar/SearchBar";
 
-//styles for the bar
+//styles for the bar to make it pretty
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -25,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//precondition: props.changeViewHandler must be a function that modifies the state of the parent component from which it originates,
+//              props.message must be a string that represents the message on the button, props must be an object
+//postcondition: this function returns a top bar component that includes a search bar, and a button to to change between views
 export default function TopBar(props) {
+  //handler from the props, modify the state of the parent component
   const changeViewHandler = () => {
     const changeView = props.changeViewHandler;
     changeView();

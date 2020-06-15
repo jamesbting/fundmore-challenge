@@ -1,3 +1,6 @@
+//this class represents a result from the api, and will return an expandable card that can show or hide details about the super hero
+//it is a class and not a functional component because it has a lifecycle, and can be updated to feature new members, and also has an expanded state
+
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,6 +20,7 @@ export default class ResultItem extends React.Component {
     super(props);
     this.state = {
       expanded: false,
+      hero: null,
     };
   }
 
@@ -74,6 +78,8 @@ export default class ResultItem extends React.Component {
       work,
     } = this.props.hero; //use destructuring to make the code more readable and reduce the code base
 
+    //these two arrays are here so that, in case a new stat is added, we can just add it to the stat array and the name, and then the map function below
+    //will add it automatically - promotes maintainability and extensibility of the code
     const stats = [
       powerstats.intelligence,
       powerstats.strength,
@@ -82,6 +88,7 @@ export default class ResultItem extends React.Component {
       powerstats.power,
       powerstats.combat,
     ];
+
     const statNames = [
       "Intelligence",
       "Strength",
@@ -92,6 +99,7 @@ export default class ResultItem extends React.Component {
     ];
 
     let expanded = this.state.expanded;
+
     return (
       <Card className={"searchResultCardRoot"}>
         <CardMedia

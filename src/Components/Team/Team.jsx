@@ -1,3 +1,5 @@
+//a react class that represents the team built by the user
+//returns a component that will calculate the team averages on the fly, as well as display each team member in their own card
 import React from "react";
 import TeamMember from "./TeamMember/TeamMember";
 import Paper from "@material-ui/core/Paper";
@@ -17,6 +19,7 @@ export default class Team extends React.Component {
       "Combat",
     ];
   }
+
   static getDerivedStateFromProps(props, state) {
     if (props.teamMembers !== state.teamMembers) {
       const teamMembers = props.teamMembers;

@@ -1,3 +1,5 @@
+// team member class that represents a member of the team, and generates a react card with all the relevant information
+
 import React from "react";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 
 import "./TeamMember.css";
+
 export default class TeamMember extends React.Component {
   constructor() {
     super();
@@ -20,6 +23,7 @@ export default class TeamMember extends React.Component {
     }
     return null;
   }
+
   //handle when the user clicks the "Remove from team button"
   handleRemoveFromTeam = () => {
     this.props.removeFromTeamHandler(this.state.member);
@@ -27,7 +31,10 @@ export default class TeamMember extends React.Component {
 
   render() {
     const { id, name, image, powerstats } = this.props.member; //destructure to reduce the code base
-    //for building the list
+    //for building the list using the map function
+
+    //these two arrays are here so that, in case a new stat is added, we can just add it to the stat array and the name, and then the map function below
+    //will add it automatically - promotes maintainability and extensibility of the code
     const stats = [
       powerstats.intelligence,
       powerstats.strength,
@@ -44,6 +51,7 @@ export default class TeamMember extends React.Component {
       "Power",
       "Combat",
     ];
+
     return (
       <Card className={"searchResultCardRoot"} key={id}>
         <CardMedia

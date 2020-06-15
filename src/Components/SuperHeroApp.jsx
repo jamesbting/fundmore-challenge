@@ -1,5 +1,6 @@
 //a wrapper class that will be responsible for the interaction between all the components
-//will pass data between the components
+//will pass data between the components and is the parent class for all components
+//will be rendered by the App component in App.js
 import React from "react";
 
 //custom components import
@@ -10,7 +11,10 @@ import CreditBox from "./CreditBox/CreditBox";
 
 import "./SuperHeroApp.css";
 
-//TO DO: ADD A BUTTON TO CHANGE TO THE SEARCH RESULTS AND THE TEAM VIEW
+const NAME = "James Ting";
+const PURPOSE = "as a solution to the Fundmore.ai coding challenge.";
+const CREATOR_LINK = "https://www.linkedin.com/in/james-b-ting/";
+const SOURCE_CODE_LINK = "https://github.com/jamesbting/fundmore-challenge";
 
 export default class SuperHeroApp extends React.Component {
   constructor() {
@@ -46,7 +50,7 @@ export default class SuperHeroApp extends React.Component {
     if (event.key === "Enter") {
       this.setState({
         currentQuery: event.target.value.toLowerCase(),
-        showingTeam: false,
+        showingTeam: false, //change showingTeam to false so the user can see the search results
       });
     }
   };
@@ -66,7 +70,7 @@ export default class SuperHeroApp extends React.Component {
     } else {
       newTeam.push(hero);
       IDSet.add(hero.id);
-      this.setState({ team: newTeam, currIDs: IDSet, showingTeam: true });
+      this.setState({ team: newTeam, currIDs: IDSet, showingTeam: true }); //change the state to showingTeam so that the user can see the team with the new hero added
       return true;
     }
   };
@@ -79,6 +83,8 @@ export default class SuperHeroApp extends React.Component {
     }));
   };
 
+  //pass this handler to the topbar component, which will pass it to the change view button so that the button in the topbar can modify
+  //the current view of the app
   changeViewHandler = () => {
     this.setState((prevState) => ({ showingTeam: !prevState.showingTeam }));
   };
@@ -86,6 +92,8 @@ export default class SuperHeroApp extends React.Component {
   render() {
     const team = this.state.team;
     const showingTeam = this.state.showingTeam;
+
+    //showing the team view
     if (showingTeam) {
       return (
         <>
@@ -104,10 +112,17 @@ export default class SuperHeroApp extends React.Component {
               ></Team>
             </div>
             {/* Credit box */}
-            <CreditBox></CreditBox>
+            <CreditBox
+              name={NAME}
+              purpose={PURPOSE}
+              creatorLink={CREATOR_LINK}
+              sourceCodeLink={SOURCE_CODE_LINK}
+            ></CreditBox>
           </div>
         </>
       );
+
+      //showing search results view
     } else {
       return (
         <>
@@ -126,7 +141,12 @@ export default class SuperHeroApp extends React.Component {
               ></Result>
             </div>
             {/* Credit box */}
-            <CreditBox></CreditBox>
+            <CreditBox
+              name={NAME}
+              purpose={PURPOSE}
+              creatorLink={CREATOR_LINK}
+              sourceCodeLink={SOURCE_CODE_LINK}
+            ></CreditBox>
           </div>
         </>
       );

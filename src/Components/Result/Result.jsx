@@ -4,7 +4,7 @@ import Paper from "@material-ui/core/Paper";
 
 import ResultItem from "./ResultItem/ResultItem";
 
-const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key
+const API_KEY = 3001192003309876; // my own api key - replace it with your own API Key if you fork this repository (https://superheroapi.com/index.html)
 
 export default class Result extends React.Component {
   //baseURL: the base url to call the api with (API key should be included here)
@@ -17,7 +17,7 @@ export default class Result extends React.Component {
       proxyURL: "https://cors-anywhere.herokuapp.com/",
       results: [],
     };
-    this.handlerRemoveResult = this.handleRemoveResult.bind(this);
+    this.handleRemoveResult = this.handleRemoveResult.bind(this);
   }
 
   //check if the query has changed - if so call the api, and then re render this component with the new results
@@ -40,6 +40,8 @@ export default class Result extends React.Component {
       return;
     }
 
+    //non empty string
+
     //clean the query to remove spaces and encode them properly as URLs, no need to sanitize the input because the React DOM already does that for us
     //https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks
     const cleanedQuery = query.replace(" ", "%20");
@@ -51,6 +53,7 @@ export default class Result extends React.Component {
         if (data.response === "success") {
           this.setState({ results: data.results });
         } else {
+          //tell the user no such superhero exists
           alert(
             `No such superhero with the name "${query}" could be found. Try searching for another one.`
           );
@@ -58,6 +61,8 @@ export default class Result extends React.Component {
       })
       .catch(console.log);
   }
+
+  //remove the result from the result list after it has been added to the team
   handleRemoveResult = (hero) => {
     this.setState((prevState) => ({
       results: prevState.results.filter((element) => element.id !== hero.id),
@@ -68,7 +73,8 @@ export default class Result extends React.Component {
   render() {
     const results = this.state.results;
     const addHandler = this.props.addToTeamHandler;
-    //if no results are found, default to this
+    //if no results are found, default to a message telling the user to search for a superhero
+
     if (this.state.results.length === 0) {
       return (
         <div>
@@ -77,6 +83,7 @@ export default class Result extends React.Component {
         </div>
       );
     }
+
     return (
       <div>
         <h1>Search Results:</h1>
