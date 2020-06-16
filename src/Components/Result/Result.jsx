@@ -11,6 +11,7 @@ export default class Result extends React.Component {
   //baseURL: the base url to call the api with (API key should be included here)
   //proxyURL: the proxy url to call forward the request to in order to eliminate CORS errors
   //both should be passed from the SuperHeroAppComponent
+
   constructor(props) {
     super(props);
     this.state = {

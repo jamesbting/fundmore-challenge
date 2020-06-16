@@ -44,6 +44,8 @@ export default class Team extends React.Component {
         </div>
       );
     }
+
+    //non empty team members
     const teamMembers = this.props.teamMembers;
     const stats = this.renderStats();
 
@@ -51,7 +53,6 @@ export default class Team extends React.Component {
       <div>
         <h1>Your Team:</h1>
         <Paper>
-          {" "}
           <div className="teamBox">
             <div className="teamMembers">
               {teamMembers.map((member) => (
