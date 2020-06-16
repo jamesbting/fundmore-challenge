@@ -66,7 +66,7 @@ npm install --save react-helmet@^6.0.0-beta.2
 
 ## IMPORTANT NOTES BEFORE FIRST START:
 
-To prevent my API key from being released in the wild, you **must** create a file name ".env" in the with the following contents:
+To prevent my API key from being released in the wild, you **must** create a file name ".env" in the root folder of this repository in the with the following contents:
 
 REACT_APP_API_KEY=123456
 
