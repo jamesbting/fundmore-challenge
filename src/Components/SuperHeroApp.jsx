@@ -12,7 +12,7 @@ import CreditBox from "./CreditBox/CreditBox";
 import "./SuperHeroApp.css";
 
 const NAME = "James Ting";
-const PURPOSE = "as a solution to the Fundmore.ai coding challenge.";
+const PURPOSE = "as a personal project to work with React and REST APIs.";
 const CREATOR_LINK = "https://www.linkedin.com/in/james-b-ting/";
 const SOURCE_CODE_LINK = "https://github.com/jamesbting/fundmore-challenge";
 
