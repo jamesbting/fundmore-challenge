@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/superhero-webapp/static/css/main.19728fb2.chunk.css",
-    "main.js": "/superhero-webapp/static/js/main.5c21c57f.chunk.js",
-    "main.js.map": "/superhero-webapp/static/js/main.5c21c57f.chunk.js.map",
-    "runtime-main.js": "/superhero-webapp/static/js/runtime-main.b7dbe031.js",
-    "runtime-main.js.map": "/superhero-webapp/static/js/runtime-main.b7dbe031.js.map",
-    "static/js/2.ccdee460.chunk.js": "/superhero-webapp/static/js/2.ccdee460.chunk.js",
-    "static/js/2.ccdee460.chunk.js.map": "/superhero-webapp/static/js/2.ccdee460.chunk.js.map",
-    "index.html": "/superhero-webapp/index.html",
-    "precache-manifest.2eb4950f2f49a09b1a151bd5124af815.js": "/superhero-webapp/precache-manifest.2eb4950f2f49a09b1a151bd5124af815.js",
-    "service-worker.js": "/superhero-webapp/service-worker.js",
-    "static/css/main.19728fb2.chunk.css.map": "/superhero-webapp/static/css/main.19728fb2.chunk.css.map",
-    "static/js/2.ccdee460.chunk.js.LICENSE.txt": "/superhero-webapp/static/js/2.ccdee460.chunk.js.LICENSE.txt"
+    "main.css": "/superhero-team-builder/static/css/main.19728fb2.chunk.css",
+    "main.js": "/superhero-team-builder/static/js/main.22d32d3b.chunk.js",
+    "main.js.map": "/superhero-team-builder/static/js/main.22d32d3b.chunk.js.map",
+    "runtime-main.js": "/superhero-team-builder/static/js/runtime-main.bff28913.js",
+    "runtime-main.js.map": "/superhero-team-builder/static/js/runtime-main.bff28913.js.map",
+    "static/js/2.e2406226.chunk.js": "/superhero-team-builder/static/js/2.e2406226.chunk.js",
+    "static/js/2.e2406226.chunk.js.map": "/superhero-team-builder/static/js/2.e2406226.chunk.js.map",
+    "index.html": "/superhero-team-builder/index.html",
+    "precache-manifest.4dff9e71f0db74b827f845816d50338f.js": "/superhero-team-builder/precache-manifest.4dff9e71f0db74b827f845816d50338f.js",
+    "service-worker.js": "/superhero-team-builder/service-worker.js",
+    "static/css/main.19728fb2.chunk.css.map": "/superhero-team-builder/static/css/main.19728fb2.chunk.css.map",
+    "static/js/2.e2406226.chunk.js.LICENSE.txt": "/superhero-team-builder/static/js/2.e2406226.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.b7dbe031.js",
-    "static/js/2.ccdee460.chunk.js",
+    "static/js/runtime-main.bff28913.js",
+    "static/js/2.e2406226.chunk.js",
     "static/css/main.19728fb2.chunk.css",
-    "static/js/main.5c21c57f.chunk.js"
+    "static/js/main.22d32d3b.chunk.js"
   ]
 }
